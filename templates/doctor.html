@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница доктора</title>
+</head>
+    <style>
+        table {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+            font-size: 14px;
+            max-width: 70%;
+            width: 40%;
+            text-align: center;
+            border-collapse: collapse;
+            border-top: 7px solid #9baff1;
+            border-bottom: 7px solid #9baff1;
+            empty-cells: hide;
+            }
+            th {
+            font-size: 13px;
+            font-weight: normal;
+            background: #b9c9fe;
+            border-top: 4px solid #aabcfe;
+            border-bottom: 1px solid #fff;
+            color: #039;
+            padding: 8px;
+            }
+            td {
+            background: #e8edff;
+            border-bottom: 1px solid #fff;
+            color: #669;
+            border-top: 1px solid transparent;
+            padding: 8px;
+            }
+            tr:hover td {background: #ccddff;}
+
+
+                            *{
+              padding: 0;
+              margin: 0;
+              text-decoration: none;
+              list-style: none;
+              box-sizing: border-box;
+            }
+            body{
+              font-family: montserrat;
+            }
+            nav{
+              background: #b9c9fe;
+              height: 80px;
+              width: 100%;
+            }
+            label.logo{
+              color: white;
+              font-size: 35px;
+              line-height: 80px;
+              padding: 0 100px;
+              font-weight: bold;
+            }
+            nav ul{
+              float: right;
+              margin-right: 20px;
+            }
+            nav ul li{
+              display: inline-block;
+              line-height: 80px;
+              margin: 0 5px;
+            }
+            nav ul li a{
+              color: white;
+              font-size: 17px;
+              padding: 7px 13px;
+              border-radius: 3px;
+              text-transform: uppercase;
+            }
+            a.active,a:hover{
+              background: #9baff1;
+              transition: .5s;
+            }
+            .checkbtn{
+              font-size: 30px;
+              color: white;
+              float: right;
+              line-height: 80px;
+              margin-right: 40px;
+              cursor: pointer;
+              display: none;
+            }
+            #check{
+              display: none;
+            }
+            @media (max-width: 952px){
+              label.logo{
+                font-size: 30px;
+                padding-left: 50px;
+              }
+              nav ul li a{
+                font-size: 16px;
+              }
+            }
+            @media (max-width: 858px){
+              .checkbtn{
+                display: block;
+              }
+              ul{
+                position: fixed;
+                width: 100%;
+                height: 100vh;
+                background: #2c3e50;
+                top: 80px;
+                left: -100%;
+                text-align: center;
+                transition: all .5s;
+              }
+              nav ul li{
+                display: block;
+                margin: 50px 0;
+                line-height: 30px;
+              }
+              nav ul li a{
+                font-size: 20px;
+              }
+              a:hover,a.active{
+                background: none;
+                color: #0082e6;
+              }
+              #check:checked ~ ul{
+                left: 0;
+              }
+            }
+            section{
+              background: url(bg1.jpg) no-repeat;
+              background-size: cover;
+              height: calc(100vh - 80px);
+            }
+    </style>
+
+{% load static %}
+    <nav>
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <label class="logo"><img src="{% static 'images/medicine.png' %}" width="80" height="80"></label>
+      <ul>
+        <li><a href="/">Домой</a></li>
+        <li><a href="/about">О сервисе</a></li>
+        <li><a href="/contacts">Контакты</a></li>
+        <li><a href="logout">Выход</a></li>
+      </ul>
+    </nav>
+
+<center>
+{% if app.count > 0 %}
+<h2 align="center">Список пациентов:</h2>
+    <table align="center" >
+        <tr><th>Пациент</th><th>Дата визита</th><th>Время</th></tr>
+        {% for i in app %}
+            {% if i.doctor.id == doctor and i.appointdate >= today and i.appointtime > today2 or i.doctor.id == doctor and i.appointdate > today %}
+            <tr>
+                <td>{{ i.patient.user.name }}</td>
+                <td>{{ i.appointdate }}</td>
+                <td>{{ i.appointtime }}</td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+{% endif %}
+    </table>
+</center>
+</body>
+</html>
