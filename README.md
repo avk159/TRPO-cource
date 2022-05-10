@@ -1,2 +1,2 @@
-# TRPO-cource
-Репозитарий к курсовой работе по ТРПО
+# Clinic appointment django
+Term paper TRPO
