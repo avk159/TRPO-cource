@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from .models import Person, Appoint, Doctor, Patient, docprofile
-from .forms import RegisterForm, LoginForm, AppointForm
+from .forms import RegisterForm, LoginForm
 from datetime import datetime
 import logging
 from django.db.utils import IntegrityError
@@ -16,24 +16,26 @@ def login3(request):
         password = request.POST.get("password")
         loginform = LoginForm()
         data = {"wrong": "Ошибка! Неправильный логин или пароль.", "form": loginform}
+        data2 = {"wrong": "Ошибка! Введите логин или пароль.", "form": loginform}
         sessid = request.session.get("person_id")
+
         for p in usr:
             if(login == p.login and password == p.password):
                 if (sessid == None):
                     if (p.id == 1):
                         logger.info("Admin Logged in")
                         request.session['person_id'] = p.id
-                        p.save()
+                        #p.save()
                         return HttpResponseRedirect("adm/")
                     elif(p.usertype == False):
                         logger.info("{0} Logged in".format(p.name))
                         request.session['person_id'] = p.id
-                        p.save()
+                       # p.save()
                         return HttpResponseRedirect("id{0}".format(p.id))
                     else:
                         logger.info("{0} doctor Logged in".format(p.name))
                         request.session['person_id'] = p.id
-                        p.save()
+                       # p.save()
                         return HttpResponseRedirect("id{0}".format(p.id))
         else:
             return render(request, "auth.html", context=data)
@@ -51,23 +53,24 @@ def auth(request):
             return HttpResponseRedirect("adm/")
         else:
             return HttpResponseRedirect("id{0}".format(sessid))
- 
+
+    def __str__(self):
+        return f"{self.auth}"
+
 # выход
-def logout(request, id):
+def logout(request):
     sessid = request.session.get("person_id")
     person = Person.objects.get(id=sessid)
-    logger.info("{0}(id{1}) Logged out".format(person.name, person.id))
-    del request.session['person_id']
-    person.save()
-    return HttpResponseRedirect("/")
+    if (sessid == 1):
+        logger.info("Admin Logged out")
+        del request.session['person_id']
 
-# выход из админки
-def admlogout(request):
-    person = Person.objects.get(id=1)
-    logger.info("Admin Logged out")
-    del request.session['person_id']
-    person.save()
-    return HttpResponseRedirect("/")
+        return HttpResponseRedirect("/")
+    else:
+        logger.info("{0}(id{1}) Logged out".format(person.name, person.id))
+        del request.session['person_id']
+
+        return HttpResponseRedirect("/")
 
 # основная пользовательская страница
 def user(request, id, id2='1'):
@@ -78,7 +81,8 @@ def user(request, id, id2='1'):
     app = Appoint.objects.all().order_by('appointdate', 'appointtime')
     prof = docprofile.objects.all()
     doc = Doctor.objects.all()
-    appointform = AppointForm()
+    print(Doctor.objects.get(id=1))
+    #appointform = AppointForm()
     sessid = request.session.get("person_id")
     spec1 = request.POST.get("profile", 0)
     if (spec1 == ""):
@@ -90,7 +94,7 @@ def user(request, id, id2='1'):
         pat = Patient.objects.get(user=id)
         output = "Здравствуйте, {0}".format(person.name)
         patient = pat.id
-        data = {"output": output, "app": app, "usr": usr, "patient": patient, "today": today, "today2": today2, "prof": prof, "doc": doc, "spec": spec, "form": appointform}
+        data = {"output": output, "app": app, "usr": usr, "patient": patient, "today": today, "today2": today2, "prof": prof, "doc": doc, "spec": spec}
         return render(request, "appointment.html", context=data)
     elif (sessid == person.id and person.usertype == True):
         app = Appoint.objects.filter(doctor__user__id=person.id, appointdate__gte = today).order_by('appointdate', 'appointtime')
@@ -105,6 +109,7 @@ def user(request, id, id2='1'):
 # административная страница
 def adm(request):
     sessid = request.session.get("person_id")
+    #sessid = 1
     person = Person.objects.get(id=sessid)
     today = datetime.date(datetime.now())
     today2 = datetime.time(datetime.now())

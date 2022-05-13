@@ -14,10 +14,16 @@ class Person(models.Model):
             models.UniqueConstraint(fields=['login', 'password'], name='unique_user'),
         ]
 
+    def __str__(self):
+        return f"{self.name} {self.login} {self.password}"
+
+
 # Врачебные специальности
 class docprofile(models.Model):
     profile = models.CharField(max_length=20)
 
+    def __str__(self):
+        return f"{self.profile}"
 # Класс врача
 class Doctor(models.Model):
     user = models.OneToOneField(Person, on_delete=models.CASCADE)
@@ -41,5 +47,8 @@ class Appoint(models.Model):
             models.UniqueConstraint(fields=['doctor', 'appointdate', 'appointtime'], name='unique_appdoc'),
             models.UniqueConstraint(fields=['patient', 'appointdate', 'appointtime'], name='unique_apppatient')
         ]
+
+    def __str__(self):
+        return f"{self.doctor} {self.patient} {self.appointdate} {self.appointtime}"
 
 # Create your models here.

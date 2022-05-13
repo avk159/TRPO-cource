@@ -149,8 +149,8 @@
         <label class="logo"><img src="{% static 'images/medicine.png' %}" width="80" height="80"></label>
 
       <ul>
-        <li><a href="/about">О сервисе</a></li>
-        <li><a href="/contacts">Контакты</a></li>
+        <li><a id="href1" href="/about">О сервисе</a></li>
+        <li><a id="href2" href="/contacts">Контакты</a></li>
       </ul>
 </nav>
 <body class="container">
@@ -164,7 +164,7 @@
             <div class="col-md-10">{{field}}</div>
         </div>
         {% endfor %}
-        <input type="submit" class="button button1" value="Войти" >
+        <input type="submit" class="button button1" name="logbutton" value="Войти" >
     </form>
     <div hidden>
         <p align="center">

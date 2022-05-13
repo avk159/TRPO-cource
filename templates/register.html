@@ -148,6 +148,7 @@
       <label class="logo"><img src="{% static 'images/medicine.png' %}" width="80" height="80"></label>
 
       <ul>
+        <li><a href="/">Домой</a></li>
         <li><a href="/about">О сервисе</a></li>
         <li><a href="/contacts">Контакты</a></li>
       </ul>
@@ -168,7 +169,7 @@
         <input hidden type="text" name="docprof" value="patient" />
         <input hidden type="text" name="radiobutton" value="False"/>
         </p>
-        <input type="submit" class="button button1" value="Зарегестрировать" >
+        <input type="submit" class="button button1" name="regbutton" value="Зарегестрировать" >
     </form>
     <form method="POST" action="/">
         {% csrf_token %}
