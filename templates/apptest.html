@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Запись к врачу</title>
+</head>
+ <style>
+        table {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+            font-size: 14px;
+            max-width: 78%;
+            width: 40%;
+            text-align: center;
+            border-collapse: collapse;
+            border-top: 7px solid #9baff1;
+            border-bottom: 7px solid #9baff1;
+            empty-cells: hide;
+            }
+            th {
+            font-size: 13px;
+            font-weight: normal;
+            background: #b9c9fe;
+            border-top: 4px solid #aabcfe;
+            border-bottom: 1px solid #fff;
+            color: #039;
+            padding: 8px;
+            }
+            td {
+            background: #e8edff;
+            border-bottom: 1px solid #fff;
+            color: #669;
+            border-top: 1px solid transparent;
+            padding: 8px;
+            }
+            tr:hover td {background: #ccddff;}
+
+                .box {
+            width: 240px;
+            height: 270px;
+            position: sticky;
+            background-color: #e8edff;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            top:calc(0px)
+            }
+
+            .button {
+            background-color: lightgray;
+            border: none;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            }
+            .button1 {
+            background-color: lightgray;
+            }
+            .button1:hover {
+            background-color: #e7e7e7;
+            }
+
+
+                            *{
+              padding: 0;
+              margin: 0;
+              text-decoration: none;
+              list-style: none;
+              box-sizing: border-box;
+            }
+            body{
+              font-family: montserrat;
+            }
+            nav{
+              background: #b9c9fe;
+              height: 80px;
+              width: 100%;
+            }
+            label.logo{
+              color: white;
+              font-size: 35px;
+              line-height: 80px;
+              padding: 0 100px;
+              font-weight: bold;
+            }
+            nav ul{
+              float: right;
+              margin-right: 20px;
+            }
+            nav ul li{
+              display: inline-block;
+              line-height: 80px;
+              margin: 0 5px;
+            }
+            nav ul li a{
+              color: white;
+              font-size: 17px;
+              padding: 7px 13px;
+              border-radius: 3px;
+              text-transform: uppercase;
+            }
+            a.active,a:hover{
+              background: #9baff1;
+              transition: .5s;
+            }
+            .checkbtn{
+              font-size: 30px;
+              color: white;
+              float: right;
+              line-height: 80px;
+              margin-right: 40px;
+              cursor: pointer;
+              display: none;
+            }
+            #check{
+              display: none;
+            }
+            @media (max-width: 952px){
+              label.logo{
+                font-size: 30px;
+                padding-left: 50px;
+              }
+              nav ul li a{
+                font-size: 16px;
+              }
+            }
+            @media (max-width: 858px){
+              .checkbtn{
+                display: block;
+              }
+              ul{
+                position: fixed;
+                width: 100%;
+                height: 100vh;
+                background: #2c3e50;
+                top: 80px;
+                left: -100%;
+                text-align: center;
+                transition: all .5s;
+              }
+              nav ul li{
+                display: block;
+                margin: 50px 0;
+                line-height: 30px;
+              }
+              nav ul li a{
+                font-size: 20px;
+              }
+              a:hover,a.active{
+                background: none;
+                color: #0082e6;
+              }
+              #check:checked ~ ul{
+                left: 0;
+              }
+            }
+            section{
+              background: url(bg1.jpg) no-repeat;
+              background-size: cover;
+              height: calc(100vh - 80px);
+            }
+    </style>
+<body class="container">
+<!--<div align="right"><a href="logout">Выйти</a></div>
+<div align="right"><a href="/about">Контакты</a></div>
+<h2>{{ output }}</h2>
+<hr>-->
+
+<script type="text/javascript">
+
+    function changeFunc0() {
+    var selectBox = document.getElementById("selectBox");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+
+    document.getElementById("spectxt").hidden = false;
+    document.getElementById("selectBox2").hidden = false;
+
+    selectBox.value = selectedValue;
+    document.profileform.submit();
+
+   }
+
+   function changeFunc() {
+    var selectBox = document.getElementById("selectBox");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+
+    document.getElementById("text2").hidden = false;
+    document.getElementById("date").hidden = false;
+
+   }
+
+   function changeFunc2() {
+    document.getElementById("text4").hidden = false;
+    document.getElementById("selectbox3").hidden = false;
+
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0 so need to add 1 to make it 1!
+    var nm = mm + 1;
+    var yyyy = today.getFullYear();
+
+    if(dd<10){
+    dd='0'+dd
+    }
+    if(mm<10){
+    mm='0'+mm
+    }
+    if(nm<10){
+    nm='0'+nm
+    }
+
+    today = yyyy+'-'+mm+'-'+dd;
+
+    var today2 = new Date();
+    var hh = today2.getHours();
+    var mn = today2.getMinutes();
+    if (hh<10){
+    hh='0'+hh
+    }
+    var time = hh + ":" + mn;
+
+    curdate = document.getElementById("date").value;
+    var select = document.getElementById("selectbox3");
+    var length = select.options.length;
+
+    var timel = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00'];
+    var timel2 = [];
+    var timebuff = [];
+
+    for (var i = length-1; i>=0; i--){
+        select.options[i] = null;
+        }
+
+    for (var i = 0; i<=timel.length-1; i++){
+        if (timel[i] > time){
+            timel2.push(timel[i]);
+            }
+        }
+
+    if (curdate > today){
+        for (var i = 0; i<=timel.length-1; i++){
+            var opt = document.createElement("option");
+            opt.value = timel[i];
+            opt.text = timel[i];
+            select.add(opt);
+            }
+        }
+    else {
+        for (var i = 0; i<=timel2.length-1; i++){
+            var opt = document.createElement("option");
+            opt.value = timel2[i];
+            opt.text = timel2[i];
+            select.add(opt);
+            }
+        }
+    }
+
+   function changeFunc3() {
+    document.getElementById("button").hidden = false;
+   }
+
+</script>
+<script type="text/javascript">
+function mindate()
+{
+var today = new Date();
+var maxdate = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0 so need to add 1 to make it 1!
+var nm = mm + 1;
+var yyyy = today.getFullYear();
+
+if(dd<10){
+  dd='0'+dd
+}
+if(mm<10){
+  mm='0'+mm
+}
+if(nm<10){
+  nm='0'+nm
+}
+
+today = yyyy+'-'+mm+'-'+dd;
+maxdate = yyyy+'-'+nm+'-'+dd;
+document.getElementById("date").setAttribute("min", today);
+document.getElementById("date").setAttribute("max", maxdate);
+}
+</script>
+<script type="text/javascript">
+    const picker = document.getElementById('txtDate');
+picker.addEventListener('input', function(e){
+  var day = new Date(this.value).getUTCDay();
+  if([6,0].includes(day)){
+    e.preventDefault();
+    this.value = '';
+    alert('Weekends not allowed');
+  }
+});
+</script>
+
+{% load static %}
+    <nav>
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <label class="logo"><img src="{% static 'images/medicine.png' %}" width="80" height="80"></label>
+      <ul>
+        <li><a href="/">Домой</a></li>
+        <li><a href="/about">О сервисе</a></li>
+        <li><a href="/contacts">Контакты</a></li>
+        <li><a href="/logout">Выход</a></li>
+      </ul>
+    </nav>
+
+<center>
+    <div class="box">
+<h2>Запись на прием к врачу</h2>
+<p id="text1">Выберите направление</p>
+
+    <form name="profileform" method="post">
+        {% csrf_token %}
+    <select id="selectBox" name="profile" onchange="changeFunc0();">
+    <option hidden></option>
+    <option value="1">Терапевт</option>
+    <option value="2">Отоларинголог</option>
+    <option value="3">Окулист</option>
+    <option value="4">Хирург</option>
+    <option value="5">Невропатолог</option>
+    <option value="6">Кардиолог</option>
+    <option value="7">Психиатр</option>
+  </select>
+    </form>
+
+<form method="post" action="makeappoint">
+{% csrf_token %}
+    <p  id="spectxt">Выберите специалиста</p>
+    <select required id="selectBox2" name="specialist" onchange="changeFunc();">
+    <option hidden></option>
+    <option value="1">Василий</option>
+    <option value="2">Андрей</option>
+    <option value="3">Анастасия</option>
+    <option value="4">Елена</option>
+    </select>
+
+    <p  id="text2">Выберите дату:</p>
+    <input  required id="date"  type="date" onclick="mindate();" name="calendar" onchange="changeFunc2();">
+    <p  id="text4" >Выберите время</p>
+    <select required id="selectbox3" name="apptime" onchange="changeFunc3();">
+    <option hidden></option>
+    <option value="1">08:00</option>
+    <option value="2">09:00</option>
+    <option value="3">10:00</option>
+    <option value="4">11:00</option>
+    <option value="5">12:00</option>
+    <option value="6">13:00</option>
+    <option value="7">14:00</option>
+    <option value="8">15:00</option>
+    <option value="9">16:00</option>
+    </select>
+    <p></p>
+    <input  hidden id="button" type="submit"  class="button button1" value="Записаться">
+
+    {% csrf_token %}
+    <p></p>
+    <p align="center">{{ wrong }}</p>
+
+</form>
+</div>
+
+<form method="POST" action="makeappoint">
+        {% csrf_token %}
+        <p align="center">{{ error }}</p>
+    </form>
+</center>
+</body>
+</html>

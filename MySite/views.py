@@ -8,7 +8,7 @@ from django.db.utils import IntegrityError
 
 logger = logging.getLogger(__name__)
 
-# логин
+# 1 логин
 def login3(request):
     if request.method == "POST":
         usr = Person.objects.all()
@@ -40,7 +40,7 @@ def login3(request):
         else:
             return render(request, "auth.html", context=data)
 
-# страница авторизация
+# 2 страница авторизация
 def auth(request):
     sessid = request.session.get("person_id")
     loginform = LoginForm()
@@ -57,7 +57,7 @@ def auth(request):
     def __str__(self):
         return f"{self.auth}"
 
-# выход
+# 3 выход
 def logout(request):
     sessid = request.session.get("person_id")
     person = Person.objects.get(id=sessid)
@@ -72,7 +72,7 @@ def logout(request):
 
         return HttpResponseRedirect("/")
 
-# основная пользовательская страница
+# 4 основная пользовательская страница
 def user(request, id, id2='1'):
     usr = Person.objects.all()
     person = Person.objects.get(id=id)
@@ -106,7 +106,27 @@ def user(request, id, id2='1'):
     else:
         return HttpResponse("Forbidden")
 
-# административная страница
+def apptest(request):
+    # usr = Person.objects.all()
+    # person = Person.objects.get(id=1)
+    # today = datetime.date(datetime.now())
+    # today2 = datetime.time(datetime.now())
+    # app = Appoint.objects.all().order_by('appointdate', 'appointtime')
+    # prof = docprofile.objects.all()
+    # doc = Doctor.objects.all()
+    # print(Doctor.objects.get(id=1))
+    # # appointform = AppointForm()
+    # sessid = request.session.get("person_id")
+    # spec1 = request.POST.get("profile", 0)
+    # if (spec1 == ""):
+    #     spec = None
+    # else:
+    #     spec = int(spec1)
+    # data = {"app": app, "usr": usr, "today": today, "today2": today2,
+    #         "prof": prof, "doc": doc, "spec": spec}
+    return render(request, "apptest.html")
+
+# 5 административная страница
 def adm(request):
     sessid = request.session.get("person_id")
     #sessid = 1
@@ -126,8 +146,8 @@ def adm(request):
     else:
         return HttpResponse("Forbidden")
 
-# создание пользователя
-def create(request):
+# 6 создание пользователя
+def usercreate(request):
     if request.method == "POST":
         personform = RegisterForm()
         pers = Person()
@@ -165,13 +185,13 @@ def create(request):
                 return render(request, "register.html", context=data)
     return HttpResponseRedirect("/")
 
-#Страница регистрации
+# 7 Страница регистрации
 def register(request):
     personform = RegisterForm()
     return render(request, "register.html", {"form": personform})
 
-# удаление данных пользователей из бд
-def delete(request, id):
+# 8 удаление данных пользователей из бд
+def userdelete(request, id):
     try:
         person = Person.objects.get(id=id)
         adm = Person.objects.get(id=1)
@@ -180,7 +200,7 @@ def delete(request, id):
     except Person.DoesNotExist:
         return HttpResponseNotFound("<h2>Person not found</h2>")
 
-# удаление встречи/записи
+# 9 удаление встречи/записи
 def appdelete(request, id):
     try:
         appoint = Appoint.objects.get(id=id)
@@ -190,7 +210,7 @@ def appdelete(request, id):
     except Person.DoesNotExist:
         return HttpResponseNotFound("<h2>Appointment not found</h2>")
 
-# создание записи к врачу
+# 10 создание записи к врачу
 def makeappoint(request, id):
     person = Person.objects.get(id=id)
     usr = Person.objects.all()
@@ -217,10 +237,10 @@ def makeappoint(request, id):
             return render(request, 'appointment.html', context=data2)
     return HttpResponseRedirect("/id{0}".format(id))
 
-# контакты
+# 11 контакты
 def about(request):
     return render(request, "about.html")
 
-# о сервисе
+# 12 о сервисе
 def abouts(request):
     return render(request, "abouts.html")
