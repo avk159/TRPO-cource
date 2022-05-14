@@ -106,26 +106,6 @@ def user(request, id, id2='1'):
     else:
         return HttpResponse("Forbidden")
 
-def apptest(request):
-    # usr = Person.objects.all()
-    # person = Person.objects.get(id=1)
-    # today = datetime.date(datetime.now())
-    # today2 = datetime.time(datetime.now())
-    # app = Appoint.objects.all().order_by('appointdate', 'appointtime')
-    # prof = docprofile.objects.all()
-    # doc = Doctor.objects.all()
-    # print(Doctor.objects.get(id=1))
-    # # appointform = AppointForm()
-    # sessid = request.session.get("person_id")
-    # spec1 = request.POST.get("profile", 0)
-    # if (spec1 == ""):
-    #     spec = None
-    # else:
-    #     spec = int(spec1)
-    # data = {"app": app, "usr": usr, "today": today, "today2": today2,
-    #         "prof": prof, "doc": doc, "spec": spec}
-    return render(request, "apptest.html")
-
 # 5 административная страница
 def adm(request):
     sessid = request.session.get("person_id")
@@ -192,23 +172,29 @@ def register(request):
 
 # 8 удаление данных пользователей из бд
 def userdelete(request, id):
-    try:
-        person = Person.objects.get(id=id)
-        adm = Person.objects.get(id=1)
-        person.delete()
-        return HttpResponseRedirect("/adm/")
-    except Person.DoesNotExist:
-        return HttpResponseNotFound("<h2>Person not found</h2>")
+    sessid = request.session.get("person_id")
+    if (sessid == 1):
+        try:
+            person = Person.objects.get(id=id)
+            person.delete()
+            return HttpResponseRedirect("/adm/")
+        except Person.DoesNotExist:
+            return HttpResponseNotFound("<h2>Person not found</h2>")
+    else:
+        return HttpResponse("Forbidden")
 
 # 9 удаление встречи/записи
 def appdelete(request, id):
-    try:
-        appoint = Appoint.objects.get(id=id)
-        adm = Person.objects.get(id=1)
-        appoint.delete()
-        return HttpResponseRedirect("/adm/")
-    except Person.DoesNotExist:
-        return HttpResponseNotFound("<h2>Appointment not found</h2>")
+    sessid = request.session.get("person_id")
+    if (sessid == 1):
+        try:
+            appoint = Appoint.objects.get(id=id)
+            appoint.delete()
+            return HttpResponseRedirect("/adm/")
+        except Person.DoesNotExist:
+            return HttpResponseNotFound("<h2>Appointment not found</h2>")
+    else:
+        return HttpResponse("Forbidden")
 
 # 10 создание записи к врачу
 def makeappoint(request, id):
@@ -239,8 +225,14 @@ def makeappoint(request, id):
 
 # 11 контакты
 def about(request):
-    return render(request, "about.html")
+    return render(request, "contacts.html")
 
 # 12 о сервисе
 def abouts(request):
     return render(request, "abouts.html")
+
+def apptest(request):
+    return render(request, "apptest.html")
+
+def admtest(request):
+    return render(request, "admtest.html")

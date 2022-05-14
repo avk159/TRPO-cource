@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Администрация</title>
+    {% load static %}
+
+<style>
+    table {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+            font-size: 14px;
+            max-width: 70%;
+            width: 40%;
+            text-align: center;
+            border-collapse: collapse;
+            border-top: 7px solid #9baff1;
+            border-bottom: 7px solid #9baff1;
+            empty-cells: hide;
+            }
+            th {
+            font-size: 13px;
+            font-weight: normal;
+            background: #b9c9fe;
+            border-top: 4px solid #aabcfe;
+            border-bottom: 1px solid #fff;
+            color: #039;
+            padding: 8px;
+            }
+            td {
+            background: #e8edff;
+            border-bottom: 1px solid #fff;
+            color: #669;
+            border-top: 1px solid transparent;
+            padding: 8px;
+            }
+            tr:hover td {background: #ccddff;}
+
+                 .button {
+            background-color: lightgray;
+            border: none;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            }
+            .button1 {
+            background-color: lightgray;
+            }
+            .button1:hover {
+            background-color: #e7e7e7;
+            }
+
+
+           *{
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+            box-sizing: border-box;
+            }
+            body {
+              font-family: montserrat;
+            }
+            nav {
+              background: #b9c9fe;
+              height: 80px;
+              width: 100%;
+            }
+            label.logo {
+              color: white;
+              font-size: 35px;
+              line-height: 80px;
+              padding: 0 100px;
+              font-weight: bold;
+            }
+            nav ul {
+              float: right;
+              margin-right: 20px;
+            }
+            nav ul li {
+              display: inline-block;
+              line-height: 80px;
+              margin: 0 5px;
+            }
+            nav ul li a {
+              color: white;
+              font-size: 17px;
+              padding: 7px 13px;
+              border-radius: 3px;
+              text-transform: uppercase;
+            }
+            a.active,a:hover {
+              background: #9baff1;
+              transition: .5s;
+            }
+            .checkbtn {
+              font-size: 30px;
+              color: white;
+              float: right;
+              line-height: 80px;
+              margin-right: 40px;
+              cursor: pointer;
+              display: none;
+            }
+            #check {
+              display: none;
+            }
+            @media (max-width: 952px) {
+              label.logo {
+                font-size: 30px;
+                padding-left: 50px;
+              }
+              nav ul li a {
+                font-size: 16px;
+              }
+            }
+            @media (max-width: 858px) {
+              .checkbtn {
+                display: block;
+              }
+              ul{
+                position: fixed;
+                width: 100%;
+                height: 100vh;
+                background: #2c3e50;
+                top: 80px;
+                left: -100%;
+                text-align: center;
+                transition: all .5s;
+              }
+              nav ul li {
+                display: block;
+                margin: 50px 0;
+                line-height: 30px;
+              }
+              nav ul li a {
+                font-size: 20px;
+              }
+              a:hover,a.active {
+                background: none;
+                color: #0082e6;
+              }
+              #check:checked ~ ul {
+                left: 0;
+              }
+            }
+            section {
+              background: url(bg1.jpg) no-repeat;
+              background-size: cover;
+              height: calc(100vh - 80px);
+            }
+</style>
+
+</head>
+
+<script type="text/javascript">
+
+   function changeFunc0() {
+    document.getElementById("selectbox8").hidden = false;
+    document.getElementById("txtDate").hidden = false;
+   }
+
+   function changeFunc1() {
+    document.getElementById("selectbox8").hidden = true;
+    document.getElementById("txtDate").hidden = true;
+   }
+  </script>
+
+<body>
+
+
+<nav>
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+
+        <label class="logo"><img src="{% static 'images/medicine.png' %}" width="80" height="80"></label>
+
+      <ul>
+        <li><a href="#">Домой</a></li>
+        <li><a href="/about">О сервисе</a></li>
+        <li><a href="/contacts">Контакты</a></li>
+          <li><a href="/logout">Выход</a></li>
+      </ul>
+</nav>
+
+<center>
+    <h2 align="center">Регистрация</h2>
+        <form  style="vertical-align: center" align="center" method="POST" action="create/">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="row">
+                    {{field.label_tag}}
+                    <div class="col-md-10">{{field}}</div>
+                </div>
+                {% endfor %}
+            <p align="center">
+                <label>Выберите тип пользователя</label><br>
+                <input type="radio" id="rb1" value="False" name="radiobutton" onchange="changeFunc1();" /> <label for="rb1">Пациент</label>
+                 <input type="radio" id="rb2" value="True" name="radiobutton"  onchange="changeFunc0();"/> <label for="rb2">Доктор</label>
+            <p></p>
+                <p hidden id="txtDate">Выберите профиль специалиста:</p>
+                <select hidden id="selectbox8" name="docprof">
+                <option hidden></option>
+                {% for i in prof %}
+                <option value="{{ i.id }}">{{ i.profile }}</option>
+                {% endfor %}
+                </select>
+            </p>
+                <input type="submit" class="button button1" value="Зарегестрировать" >
+        </form>
+    <hr>
+
+    <select hidden id="selectbox9" name="docprof">
+                <option hidden></option>
+                <option value="Терапевт">Терапевт</option>
+                <option value="Отоларинголог">Отоларинголог</option>
+                <option value="Окулист">Окулист</option>
+                <option value="Хирург">Хирург</option>
+                <option value="Невропатолог">Невропатолог</option>
+                <option value="Кардиолог">Кардиолог</option>
+                <option value="Психиатр">Психиатр</option>
+                </select>
+    <div>
+    {% if usr.count > 0 %}
+    <h2 align="center">Список пользователей</h2>
+    <table align="center" bgcolor="#e7e7e7">
+        <tr><th>Id</th><th>Логин</th><th>Пароль</th><th>Имя</th><th>Тип пользователя</th><th>Дата регистрации</th><th>Удалить пользователя</th></tr>
+        {% for person in usr %}
+            {% if person.id > 1 %}
+            <tr>
+                <td>{{ person.id }}</td>
+                <td>{{ person.login }}</td>
+                <td>{{ person.password }}</td>
+                <td>{{ person.name }}</td>
+                <td>{{ person.usertype }}</td>
+                <td>{{ person.registered }}</td>
+                <td><a href="delete/{{person.id}}">Удалить</a></td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+    {% endif %}
+    <hr>
+    </div>
+
+    <div>
+    {% if patient.count > 0 %}
+    <h2 align="center">Список Пациентов</h2>
+    <table align="center" bgcolor="#e7e7e7">
+        <tr><th>Id</th><th>User Id</th><th>Имя</th><th>Дата регистрации</th><th>Удалить пользователя</th></tr>
+        {% for person in patient %}
+            <tr>
+                <td>{{ person.id }}</td>
+                <td>{{ person.user.id }}</td>
+                <td>{{ person.user.name }}</td>
+                <td>{{ person.user.registered }}</td>
+                <td><a href="delete/{{person.id}}">Удалить</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    <hr>
+    </div>
+
+    <div>
+    {% if doctor.count > 0 %}
+    <h2 align="center">Список врачей</h2>
+    <table align="center" bgcolor="#e7e7e7">
+        <tr><th>Id</th><th>User Id</th><th>Имя</th><th>Специальность</th><th>Дата регистрации</th><th>Удалить пользователя</th></tr>
+        {% for person in doctor %}
+            <tr>
+                <td>{{ person.id }}</td>
+                <td>{{ person.user.id }}</td>
+                <td>{{ person.user.name }}</td>
+                <td>{{ person.profile.profile }}</td>
+                <td>{{ person.user.registered }}</td>
+                <td><a href="delete/{{person.id}}">Удалить</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    <hr>
+    </div>
+
+    <div>
+    {% if app.count > 0 %}
+    <h2 align="center">Список актуальных заявок</h2>
+    {% csrf_token %}
+    <table align="center" bgcolor="#e7e7e7">
+        <tr><th>Id</th><th>Направление</th><th>Доктор</th><th>Пациент</th><th>Дата визита</th><th>Время</th><th>Дата регистрации</th><th>Удалить</th></tr>
+        {% for i in app %}
+            {% if i.appointdate >= today and i.appointtime > today2 or i.appointdate > today %}
+            <tr>
+                <td>{{ i.id }}</td>
+                <td>{{ i.doctor.profile.profile }}</td>
+                <td>{{ i.doctor.user.name }}({{ i.doctor.id }})</td>
+                <td>{{ i.patient.user.name }}({{ i.patient.id }})</td>
+                <td>{{ i.appointdate }}</td>
+                <td>{{ i.appointtime }}</td>
+                <td>{{ i.appointreg }}</td>
+                <td><a href="appdelete/{{ i.id }}">Удалить</a></td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    </table>
+    <hr>
+    </div>
+
+    <div>
+    {% if app2.count > 0 %}
+    <h2 align="center">История заявок</h2>
+    {% csrf_token %}
+    <table align="center" bgcolor="#e7e7e7">
+        <tr><th>Id</th><th>Направление</th><th>Доктор</th><th>Пациент</th><th>Дата визита</th><th>Время</th><th>Дата регистрации</th><th>Удалить</th></tr>
+        {% for a in app2 %}
+            {% if a.appointdate <= today and a.appointtime < today2 or a.appointdate < today %}
+            <tr>
+                <td>{{ a.id }}</td>
+                <td>{{ a.doctor.profile.profile }}</td>
+                <td>{{ a.doctor.user.name }}({{ a.doctor.id }})</td>
+                <td>{{ a.patient.user.name }}({{ a.patient.id }})</td>
+                <td>{{ a.appointdate }}</td>
+                <td>{{ a.appointtime }}</td>
+                <td>{{ a.appointreg }}</td>
+                <td><a href="appdelete/{{ a.id }}">Удалить</a></td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    </table>
+    </div>
+    </center>
+</body>
+</html>

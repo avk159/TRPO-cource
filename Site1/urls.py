@@ -30,6 +30,7 @@ urlpatterns = [
     path('adm/', views.adm, name='adminpage'),
     path('id<int:id>/', views.user, name='userpage'),
     path('apptest', views.apptest, name='apptest'),
+    path('admtest', views.admtest, name='admtest'),
     path('contacts', views.about, name='contacts'),
     path('about', views.abouts, name='about'),
     path('logout', views.logout, name='logout'),

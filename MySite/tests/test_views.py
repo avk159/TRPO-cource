@@ -44,20 +44,7 @@ class PageLoadViewTest(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'adm.html')
 
-    # 4 страница контактов
-    def testViewContactsLoad(self):
-        response = self.client.get(reverse('contacts'))
-
-        self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'about.html')
-
-    # 5 страница о сервисе
-    def testViewAboutLoad(self):
-        response = self.client.get(reverse('about'))
-        self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'abouts.html')
-
-    # 6 персональная страница пациента
+    # 4 персональная страница пациента
     def testViewUserpagePatientLoad(self):
         session = self.session
         session['person_id'] = 2
@@ -66,8 +53,7 @@ class PageLoadViewTest(TestCase):
         sessid = session['person_id']
 
         person1 = Person.objects.create(id=2, name="Elena", login="Hehelena", password="14231423", usertype=False, registered=datetime.now())
-        person2 = Person.objects.create(id=6, name="Henry", login="Hehehe", password="12345", usertype=True,
-                                        registered=datetime.now())
+        person2 = Person.objects.create(id=6, name="Henry", login="Hehehe", password="12345", usertype=True, registered=datetime.now())
         docprofile.objects.create(id=2, profile="Отоларинголог")
         Doctor.objects.create(user_id=6, profile_id=2)
         Patient.objects.create(user_id=2)
@@ -78,7 +64,7 @@ class PageLoadViewTest(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'appointment.html')
 
-    # 7 персональная страница врача
+    # 5 персональная страница врача
     def testViewUserpageDoctorLoad(self):
         session = self.session
         session['person_id'] = 6
@@ -100,7 +86,20 @@ class PageLoadViewTest(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'doctor.html')
 
-# Тестирование функции авторизации
+    # 6 страница контактов
+    def testViewContactsLoad(self):
+        response = self.client.get(reverse('contacts'))
+
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'contacts.html')
+
+    # 7 страница о сервисе
+    def testViewAboutLoad(self):
+        response = self.client.get(reverse('about'))
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'abouts.html')
+
+# Тестирование функций
 class ViewFuncTest(TestCase):
 
     # установка сессии для теста
@@ -174,7 +173,7 @@ class ViewFuncTest(TestCase):
         session['person_id'] = 2
         session.save()
 
-        self.url = reverse('deleteuser', kwargs={"id": 1})
+        self.url = reverse('deleteuser', kwargs={"id": 2})
         response = self.client.get(self.url)
         self.assertEquals(response.status_code, 302)
         self.assertRedirects(response, '/adm/')
@@ -185,7 +184,7 @@ class ViewFuncTest(TestCase):
         session['person_id'] = 1
         session.save()
 
-        self.url = reverse('deleteappointment', kwargs={"id": 1})
+        self.url = reverse('deleteappointment', kwargs={"id": 2})
         response = self.client.get(self.url)
         self.assertEquals(response.status_code, 302)
         self.assertRedirects(response, '/adm/')
