@@ -1,0 +1,59 @@
+..\..\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\messages\__init__.py:1:1 'from django.contrib.messages.api import *' used; unable to detect undefined names
+..\..\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\messages\__init__.py:1:1 'django.contrib.messages.api.*' imported but unused
+..\..\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\messages\__init__.py:2:1 'from django.contrib.messages.constants import *' used; unable to detect undefined names
+..\..\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\messages\__init__.py:2:1 'django.contrib.messages.constants.*' imported but unused
+MySite\admin.py:1:1 'django.contrib.admin' imported but unused
+MySite\forms.py:2:1 '.models.docprofile' imported but unused
+MySite\forms.py:2:1 '.models.Doctor' imported but unused
+MySite\views.py:19:9 local variable 'data2' is assigned to but never used
+MySite\views.py:113:5 local variable 'person' is assigned to but never used
+MySite\views.py:221:13 local variable 'data' is assigned to but never used
+MySite\tests\MySeleniumTests.py:19:9 local variable 'person' is assigned to but never used
+MySite\tests\MySeleniumTests.py:20:9 local variable 'person2' is assigned to but never used
+MySite\tests\MySeleniumTests.py:78:5 redefinition of unused 'test_deleteuser' from line 74
+MySite\tests\test_forms.py:2:1 'from MySite.forms import *' used; unable to detect undefined names
+MySite\tests\test_forms.py:8:16 'RegisterForm' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.forms
+MySite\tests\test_forms.py:18:16 'RegisterForm' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.forms
+MySite\tests\test_forms.py:28:16 'RegisterForm' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.forms
+MySite\tests\test_forms.py:38:16 'RegisterForm' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.forms
+MySite\tests\test_forms.py:48:16 'RegisterForm' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.forms
+MySite\tests\test_forms.py:58:16 'RegisterForm' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.forms
+MySite\tests\test_forms.py:68:16 'RegisterForm' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.forms
+MySite\tests\test_forms.py:80:16 'LoginForm' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.forms
+MySite\tests\test_forms.py:89:16 'LoginForm' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.forms
+MySite\tests\test_forms.py:98:16 'LoginForm' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.forms
+MySite\tests\test_forms.py:107:16 'LoginForm' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.forms
+MySite\tests\test_forms.py:116:16 'LoginForm' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.forms
+MySite\tests\test_models.py:3:1 'datetime.time' imported but unused
+MySite\tests\test_views.py:1:1 'django.test.Client' imported but unused
+MySite\tests\test_views.py:4:1 'from MySite.views import *' used; unable to detect undefined names
+MySite\tests\test_views.py:5:1 'datetime.timedelta' imported but unused
+MySite\tests\test_views.py:42:126 'datetime' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.views
+MySite\tests\test_views.py:42:9 local variable 'person' is assigned to but never used
+MySite\tests\test_views.py:55:127 'datetime' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.views
+MySite\tests\test_views.py:55:9 local variable 'person1' is assigned to but never used
+MySite\tests\test_views.py:56:121 'datetime' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.views
+MySite\tests\test_views.py:56:9 local variable 'person2' is assigned to but never used
+MySite\tests\test_views.py:57:9 'docprofile' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.views
+MySite\tests\test_views.py:58:9 'Doctor' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.views
+MySite\tests\test_views.py:59:9 'Patient' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.views
+MySite\tests\test_views.py:61:9 local variable 'person' is assigned to but never used
+MySite\tests\test_views.py:75:127 'datetime' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.views
+MySite\tests\test_views.py:75:9 local variable 'person1' is assigned to but never used
+MySite\tests\test_views.py:76:9 local variable 'person2' is assigned to but never used
+MySite\tests\test_views.py:77:52 'datetime' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.views
+MySite\tests\test_views.py:78:9 'docprofile' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.views
+MySite\tests\test_views.py:79:9 'Doctor' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.views
+MySite\tests\test_views.py:80:9 'Patient' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.views
+MySite\tests\test_views.py:82:9 local variable 'person' is assigned to but never used
+MySite\tests\test_views.py:119:28 'docprofile' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.views
+MySite\tests\test_views.py:120:24 'Doctor' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.views
+MySite\tests\test_views.py:121:24 'Doctor' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.views
+MySite\tests\test_views.py:122:25 'Patient' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.views
+MySite\tests\test_views.py:123:25 'Patient' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.views
+MySite\tests\test_views.py:124:93 'datetime' may be undefined, or defined from star imports: [E] PYFLAKES:MySite.views
+..\Site1\venv\lib\site-packages\django_extensions\import_subclasses.py:8:1 'typing.Union' imported but unused
+..\Site1\venv\lib\site-packages\django_extensions\management\utils.py:70:9 'ipdb' imported but unused
+..\Site1\venv\lib\site-packages\django_extensions\management\utils.py:71:9 'IPython' imported but unused
+..\Site1\venv\lib\site-packages\django_extensions\management\commands\runserver_plus.py:42:5 'OpenSSL' imported but unused
+..\Site1\venv\lib\site-packages\django_extensions\utils\__init__.py:2:1 '.internal_ips.InternalIPS' imported but unused
