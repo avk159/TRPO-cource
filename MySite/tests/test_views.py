@@ -112,13 +112,16 @@ class ViewFuncTest(TestCase):
         self.session = store
         self.client.cookies[settings.SESSION_COOKIE_NAME] = store.session_key
 
-        self.person1 = Person.objects.create(id=1, login="Garfield", password='14231423')
-        self.person2 = Person.objects.create(id=2, login="Peter", password='12345')
+        self.person1 = Person.objects.create(id=1, login="Garfield", password='14231423', usertype=False)
+        self.person2 = Person.objects.create(id=2, login="Peter", password='12345', usertype=True)
+        self.person3= Person.objects.create(id=3, login="Donutss", password='123456', usertype=True)
+        self.person4 = Person.objects.create(id=4, login="Helena", password='12345', usertype=False)
         self.docprofile1 = docprofile.objects.create(profile="Хирург")
-        self.Doctor1 = Doctor.objects.create(id=1, user_id=2, profile_id=1)
-        self.Patient1 = Patient.objects.create(user_id=2)
-        self.Appoint1 = Appoint.objects.create(id=1, doctor_id=1, patient_id=1, appointdate=datetime(2022, 5, 16), appointtime='11:00')
-        self.Appoint2 = Appoint.objects.create(id=2, doctor_id=1, patient_id=1, appointdate=datetime(2022, 5, 14), appointtime='09:00')
+        self.Doctor1 = Doctor.objects.create(id=1, user_id=1, profile_id=1)
+        self.Doctor2 = Doctor.objects.create(id=2, user_id=3, profile_id=1)
+        self.Patient1 = Patient.objects.create(id=1, user_id=2)
+        self.Patient2 = Patient.objects.create(id=2, user_id=4)
+        self.Appoint1 = Appoint.objects.create(id=1, doctor_id=1, patient_id=2, appointdate=datetime(2022, 5, 16), appointtime='11:00')
 
     # 8 авторизация
     def testLoginFuncView(self):
@@ -170,7 +173,7 @@ class ViewFuncTest(TestCase):
     # 12 удаление пользователя администратором
     def testDeleteUserFuncView(self):
         session = self.session
-        session['person_id'] = 2
+        session['person_id'] = 1
         session.save()
 
         self.url = reverse('deleteuser', kwargs={"id": 2})
@@ -184,7 +187,7 @@ class ViewFuncTest(TestCase):
         session['person_id'] = 1
         session.save()
 
-        self.url = reverse('deleteappointment', kwargs={"id": 2})
+        self.url = reverse('deleteappointment', kwargs={"id": 1})
         response = self.client.get(self.url)
         self.assertEquals(response.status_code, 302)
         self.assertRedirects(response, '/adm/')

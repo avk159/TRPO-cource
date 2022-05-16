@@ -254,14 +254,13 @@
     {% if patient.count > 0 %}
     <h2 align="center">Список Пациентов</h2>
     <table align="center" bgcolor="#e7e7e7">
-        <tr><th>Id</th><th>User Id</th><th>Имя</th><th>Дата регистрации</th><th>Удалить пользователя</th></tr>
+        <tr><th>Id</th><th>User Id</th><th>Имя</th><th>Дата регистрации</th></tr>
         {% for person in patient %}
             <tr>
                 <td>{{ person.id }}</td>
                 <td>{{ person.user.id }}</td>
                 <td>{{ person.user.name }}</td>
                 <td>{{ person.user.registered }}</td>
-                <td><a href="delete/{{person.id}}">Удалить</a></td>
             </tr>
         {% endfor %}
     </table>
@@ -273,7 +272,7 @@
     {% if doctor.count > 0 %}
     <h2 align="center">Список врачей</h2>
     <table align="center" bgcolor="#e7e7e7">
-        <tr><th>Id</th><th>User Id</th><th>Имя</th><th>Специальность</th><th>Дата регистрации</th><th>Удалить пользователя</th></tr>
+        <tr><th>Id</th><th>User Id</th><th>Имя</th><th>Специальность</th><th>Дата регистрации</th></tr>
         {% for person in doctor %}
             <tr>
                 <td>{{ person.id }}</td>
@@ -281,7 +280,6 @@
                 <td>{{ person.user.name }}</td>
                 <td>{{ person.profile.profile }}</td>
                 <td>{{ person.user.registered }}</td>
-                <td><a href="delete/{{person.id}}">Удалить</a></td>
             </tr>
         {% endfor %}
     </table>
