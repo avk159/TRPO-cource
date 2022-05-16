@@ -822,6 +822,12 @@ MySite\views.py:221: [W0612(unused-variable), makeappoint] Unused variable 'data
 MySite\views.py:5: [C0411(wrong-import-order), ] standard import "from datetime import datetime" should be placed before "from django.shortcuts import render"
 MySite\views.py:6: [C0411(wrong-import-order), ] standard import "import logging" should be placed before "from django.shortcuts import render"
 MySite\views.py:7: [C0411(wrong-import-order), ] third party import "from django.db.utils import IntegrityError" should be placed before "from .models import Person, Appoint, Doctor, Patient, docprofile"
+************* Module MySite.migrations.0077_auto_20220427_1417
+MySite\migrations\0077_auto_20220427_1417.py:30: [C0304(missing-final-newline), ] Final newline missing
+************* Module MySite.migrations.0097_auto_20220427_1845
+MySite\migrations\0097_auto_20220427_1845.py:5: [W0611(unused-import), ] Unused import django.db.models.deletion
+************* Module MySite.migrations.0106_auto_20220427_1921
+MySite\migrations\0106_auto_20220427_1921.py:5: [W0611(unused-import), ] Unused import django.db.models.deletion
 ************* Module MySite.tests.MySeleniumTests
 MySite\tests\MySeleniumTests.py:91: [C0305(trailing-newlines), ] Trailing newlines
 MySite\tests\MySeleniumTests.py:8: [C0413(wrong-import-position), ] Import "from MySite.models import Person" should be placed at the top of the module
@@ -2058,6 +2064,23 @@ C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks
             cursor = connection.cursor()
 
 C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
+==MySite.migrations.0064_auto_20220425_1401:[46:60]
+==MySite.migrations.0113_auto_20220427_1934:[60:74]
+        ),
+        migrations.AddConstraint(
+            model_name='appoint',
+            constraint=models.UniqueConstraint(fields=('doctor', 'patient', 'appointdate', 'appointtime'), name='unique appointment'),
+        ),
+        migrations.AddConstraint(
+            model_name='appoint',
+            constraint=models.UniqueConstraint(fields=('doctor', 'appointdate', 'appointtime'), name='unique_appdoc'),
+        ),
+        migrations.AddConstraint(
+            model_name='appoint',
+            constraint=models.UniqueConstraint(fields=('patient', 'appointdate', 'appointtime'), name='unique_apppatient'),
+        ),
+    ]
+C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
 ==django_extensions.management.commands.drop_test_database:[140:155]
 ==django_extensions.management.commands.reset_db:[120:135]
         elif engine in MYSQL_ENGINES:
@@ -2094,6 +2117,54 @@ C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks
         return attr
 
     def pre_save(self, model_instance, add):
+C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
+==MySite.migrations.0075_auto_20220427_1243:[17:30]
+==MySite.migrations.0141_auto_20220501_2002:[25:38]
+        ),
+        migrations.AlterField(
+            model_name='person',
+            name='login',
+            field=models.CharField(max_length=20, unique=True),
+        ),
+        migrations.AlterField(
+            model_name='person',
+            name='name',
+            field=models.CharField(max_length=20),
+        ),
+        migrations.AlterField(
+            model_name='person',
+C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
+==MySite.migrations.0072_auto_20220426_2031:[42:55]
+==MySite.migrations.0113_auto_20220427_1934:[60:73]
+        ),
+        migrations.AddConstraint(
+            model_name='appoint',
+            constraint=models.UniqueConstraint(fields=('doctor', 'patient', 'appointdate', 'appointtime'), name='unique appointment'),
+        ),
+        migrations.AddConstraint(
+            model_name='appoint',
+            constraint=models.UniqueConstraint(fields=('doctor', 'appointdate', 'appointtime'), name='unique_appdoc'),
+        ),
+        migrations.AddConstraint(
+            model_name='appoint',
+            constraint=models.UniqueConstraint(fields=('patient', 'appointdate', 'appointtime'), name='unique_apppatient'),
+        ),
+C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
+==MySite.migrations.0050_auto_20220425_1242:[36:49]
+==MySite.migrations.0064_auto_20220425_1401:[46:59]
+        ),
+        migrations.AddConstraint(
+            model_name='appoint',
+            constraint=models.UniqueConstraint(fields=('doctor', 'patient', 'appointdate', 'appointtime'), name='unique appointment'),
+        ),
+        migrations.AddConstraint(
+            model_name='appoint',
+            constraint=models.UniqueConstraint(fields=('doctor', 'appointdate', 'appointtime'), name='unique_appdoc'),
+        ),
+        migrations.AddConstraint(
+            model_name='appoint',
+            constraint=models.UniqueConstraint(fields=('patient', 'appointdate', 'appointtime'), name='unique_apppatient'),
+        ),
 C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
 ==django_jenkins.tasks.run_flake8:[79:94]
 ==django_jenkins.tasks.run_pep8:[60:75]
@@ -2144,6 +2215,51 @@ C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks
                 continue
             path_old = os.path.join(d, f)
 C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
+==MySite.migrations.0115_auto_20220427_2156:[10:22]
+==MySite.migrations.0129_auto_20220428_1442:[10:22]
+    ]
+
+    operations = [
+        migrations.RemoveField(
+            model_name='appoint',
+            name='doc',
+        ),
+        migrations.RemoveField(
+            model_name='appoint',
+            name='pat',
+        ),
+        migrations.AlterField(
+C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
+==MySite.migrations.0100_auto_20220427_1912:[11:23]
+==MySite.migrations.0114_auto_20220427_2013:[11:23]
+    ]
+
+    operations = [
+        migrations.AddField(
+            model_name='patient',
+            name='id',
+            field=models.AutoField(auto_created=True, default=1, primary_key=True, serialize=False, verbose_name='ID'),
+            preserve_default=False,
+        ),
+        migrations.AlterField(
+            model_name='appoint',
+            name='appointreg',
+C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
+==MySite.migrations.0084_auto_20220427_1809:[11:23]
+==MySite.migrations.0091_auto_20220427_1837:[11:23]
+    ]
+
+    operations = [
+        migrations.AddField(
+            model_name='patient',
+            name='id',
+            field=models.AutoField(auto_created=True, default=1, primary_key=True, serialize=False, verbose_name='ID'),
+            preserve_default=False,
+        ),
+        migrations.AlterField(
+            model_name='appoint',
+            name='appointreg',
+C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
 ==django_jenkins.tasks.run_flake8:[44:60]
 ==django_jenkins.tasks.run_pep8:[35:50]
         pep8_options = {}
@@ -2162,6 +2278,48 @@ C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks
         set_option(pep8_options, 'max_line_length', options['pep8-max-line-length'], config_file,
                    default=pep8.MAX_LINE_LENGTH)
 
+C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
+==MySite.migrations.0124_auto_20220428_1338:[10:21]
+==MySite.migrations.0130_auto_20220428_1937:[10:21]
+    ]
+
+    operations = [
+        migrations.RemoveField(
+            model_name='doctor',
+            name='userid',
+        ),
+        migrations.RemoveField(
+            model_name='patient',
+            name='userid',
+        ),
+C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
+==MySite.migrations.0108_auto_20220427_1923:[11:22]
+==MySite.migrations.0120_auto_20220427_2249:[11:22]
+    ]
+
+    operations = [
+        migrations.AddField(
+            model_name='appoint',
+            name='pat',
+            field=models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='MySite.patient'),
+        ),
+        migrations.AlterField(
+            model_name='appoint',
+            name='appointreg',
+C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
+==MySite.migrations.0064_auto_20220425_1401:[10:21]
+==MySite.migrations.0113_auto_20220427_1934:[11:22]
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='Appoint',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('doctor', models.CharField(max_length=20)),
+                ('patient', models.CharField(max_length=20)),
+                ('appointdate', models.DateField()),
+                ('appointtime', models.TimeField(default='00:00')),
 C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
 ==django_extensions.management.commands.mail_debug:[60:70]
 ==django_extensions.management.commands.runprofileserver:[157:168]
@@ -2190,6 +2348,104 @@ C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks
             raise CommandError("Unknown database %s" % database)
 
         engine = dbinfo.get('ENGINE')
+C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
+==MySite.migrations.0099_auto_20220427_1912:[22:31]
+==MySite.migrations.0103_auto_20220427_1918:[22:31]
+        ),
+        migrations.AlterField(
+            model_name='patient',
+            name='userid',
+            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='MySite.person'),
+        ),
+        migrations.AlterField(
+            model_name='person',
+            name='registered',
+C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
+==MySite.migrations.0091_auto_20220427_1837:[24:33]
+==MySite.migrations.0100_auto_20220427_1912:[24:33]
+        ),
+        migrations.AlterField(
+            model_name='patient',
+            name='userid',
+            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='MySite.person'),
+        ),
+        migrations.AlterField(
+            model_name='person',
+            name='registered',
+C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
+==MySite.migrations.0089_auto_20220427_1812:[11:21]
+==MySite.migrations.0099_auto_20220427_1912:[11:21]
+    ]
+
+    operations = [
+        migrations.RemoveField(
+            model_name='patient',
+            name='id',
+        ),
+        migrations.AlterField(
+            model_name='appoint',
+            name='appointreg',
+C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
+==MySite.migrations.0084_auto_20220427_1809:[14:23]
+==MySite.migrations.0104_auto_20220427_1921:[17:26]
+        migrations.AddField(
+            model_name='patient',
+            name='id',
+            field=models.AutoField(auto_created=True, default=1, primary_key=True, serialize=False, verbose_name='ID'),
+            preserve_default=False,
+        ),
+        migrations.AlterField(
+            model_name='appoint',
+            name='appointreg',
+C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
+==MySite.migrations.0082_auto_20220427_1542:[31:40]
+==MySite.migrations.0089_auto_20220427_1812:[22:31]
+        ),
+        migrations.AlterField(
+            model_name='patient',
+            name='userid',
+            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='MySite.person'),
+        ),
+        migrations.AlterField(
+            model_name='person',
+            name='registered',
+C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
+==MySite.migrations.0055_auto_20220425_1257:[17:26]
+==MySite.migrations.0071_auto_20220425_1741:[29:38]
+        ),
+        migrations.AlterField(
+            model_name='appoint',
+            name='approved',
+            field=models.BooleanField(default=False),
+        ),
+        migrations.AlterField(
+            model_name='message',
+            name='msgdate',
+C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
+==MySite.migrations.0044_auto_20220421_0921:[10:20]
+==MySite.migrations.0059_auto_20220425_1341:[10:20]
+    ]
+
+    operations = [
+        migrations.RemoveField(
+            model_name='appoint',
+            name='apptime',
+        ),
+        migrations.AlterField(
+            model_name='appoint',
+            name='appointreg',
+C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
+==MySite.migrations.0030_auto_20220420_1445:[17:26]
+==MySite.migrations.0032_auto_20220420_2057:[17:26]
+        ),
+        migrations.AlterField(
+            model_name='appoint',
+            name='apptime',
+            field=models.TimeField(),
+        ),
+        migrations.AlterField(
+            model_name='message',
+            name='msgdate',
 C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
 ==django.contrib.sessions.backends.db:[48:61]
 ==django.contrib.sessions.backends.file:[100:110]
@@ -2277,6 +2533,28 @@ C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks
             self._populate_from = populate_from
 
 C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
+==MySite.migrations.0060_auto_20220425_1343:[13:21]
+==MySite.migrations.0070_auto_20220425_1449:[17:25]
+        migrations.AddField(
+            model_name='appoint',
+            name='approved',
+            field=models.BooleanField(blank=True, default=False),
+        ),
+        migrations.AlterField(
+            model_name='appoint',
+            name='appointreg',
+C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
+==MySite.migrations.0047_auto_20220421_0939:[28:36]
+==MySite.migrations.0064_auto_20220425_1401:[13:21]
+        migrations.CreateModel(
+            name='Appoint',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('doctor', models.CharField(max_length=20)),
+                ('patient', models.CharField(max_length=20)),
+                ('appointdate', models.DateField()),
+                ('appointtime', models.TimeField(default='00:00')),
+C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks\__init__.py:1: [R0801(duplicate-code), ] Similar lines in 2 files
 ==django_jenkins.tasks.run_csslint:[1:11]
 ==django_jenkins.tasks.run_scsslint:[1:11]
 import os
@@ -2355,5 +2633,5 @@ C:\Users\cavia\PycharmProjects\Site1\venv\lib\site-packages\django_jenkins\tasks
             # Use field_name if it includes a lookup.
 
 ------------------------------------------------------------------
-Your code has been rated at 8.61/10 (previous run: 8.61/10, +0.00)
+Your code has been rated at 8.66/10 (previous run: 8.66/10, +0.00)
 

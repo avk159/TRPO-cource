@@ -8,6 +8,8 @@ MySite\forms.py:2:1 '.models.Doctor' imported but unused
 MySite\views.py:19:9 local variable 'data2' is assigned to but never used
 MySite\views.py:113:5 local variable 'person' is assigned to but never used
 MySite\views.py:221:13 local variable 'data' is assigned to but never used
+MySite\migrations\0097_auto_20220427_1845.py:5:1 'django.db.models.deletion' imported but unused
+MySite\migrations\0106_auto_20220427_1921.py:5:1 'django.db.models.deletion' imported but unused
 MySite\tests\MySeleniumTests.py:19:9 local variable 'person' is assigned to but never used
 MySite\tests\MySeleniumTests.py:20:9 local variable 'person2' is assigned to but never used
 MySite\tests\MySeleniumTests.py:78:5 redefinition of unused 'test_deleteuser' from line 74
